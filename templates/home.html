@@ -1,0 +1,555 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="Mani — Professional Video Editor, Motion Designer and Content Creator.">
+
+    <meta name="keywords"
+          content="Video Editor, Video Editing, Motion Graphics, After Effects, Premiere Pro, Mani">
+
+    <meta name="author" content="Mani">
+
+    <title>Mani — Video Editor</title>
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <style>
+
+        /* =====================================================
+           LOGO
+        ===================================================== */
+
+        .logo .brand-name {
+            color: #b6ff00;
+            font-weight: 900;
+        }
+
+
+        /* =====================================================
+           ABOUT BUTTON
+        ===================================================== */
+
+        .about-button {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 14px 24px;
+            border: 1px solid #333;
+            color: #fff;
+            text-decoration: none;
+            transition: 0.3s ease;
+        }
+
+        .about-button:hover {
+            background: #b6ff00;
+            color: #000;
+            border-color: #b6ff00;
+        }
+
+
+        /* =====================================================
+           SHOWREEL
+        ===================================================== */
+
+        .showreel-video {
+            position: relative;
+            width: 100%;
+            background: #050505;
+            border: 1px solid #292929;
+            overflow: hidden;
+            margin-top: 40px;
+        }
+
+        .showreel-video video {
+            display: block;
+            width: 100%;
+            height: auto;
+            max-height: 750px;
+            background: #000;
+            object-fit: contain;
+        }
+
+        .showreel-info {
+            padding-top: 24px;
+        }
+
+        .showreel-info h3 {
+            margin: 0 0 8px;
+            font-size: 28px;
+            color: #fff;
+        }
+
+        .showreel-info p {
+            margin: 0;
+            color: #777;
+            line-height: 1.7;
+        }
+
+        .showreel-empty {
+            padding: 100px 30px;
+            text-align: center;
+            border: 1px solid #292929;
+            background: #050505;
+            color: #666;
+            margin-top: 40px;
+        }
+
+        .showreel-empty strong {
+            display: block;
+            color: #b6ff00;
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+
+        /* =====================================================
+           MOBILE
+        ===================================================== */
+
+        @media (max-width: 700px) {
+
+            .showreel-video video {
+                max-height: 500px;
+            }
+
+            .showreel-info h3 {
+                font-size: 22px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     NAVIGATION
+===================================================== -->
+
+<header class="navbar" id="navbar">
+
+    <div class="container nav-container">
+
+
+        <!-- LOGO -->
+
+        <a href="{% url 'home' %}" class="logo">
+
+            <span class="brand-name">
+                MANI
+            </span><span>.</span>
+
+        </a>
+
+
+        <!-- NAVIGATION -->
+
+        <nav class="nav-menu">
+
+            <a href="{% url 'home' %}">
+                Home
+            </a>
+
+            <a href="{% url 'work' %}">
+                Work
+            </a>
+
+            <a href="{% url 'services' %}">
+                Services
+            </a>
+
+            <a href="{% url 'about' %}">
+                About
+            </a>
+
+            <a href="{% url 'contact' %}">
+                Contact
+            </a>
+
+        </nav>
+
+
+        <!-- LET'S TALK -->
+
+        <a href="{% url 'contact' %}" class="nav-button">
+            Let's Talk
+        </a>
+
+
+        <!-- MOBILE MENU -->
+
+        <button
+            class="menu-toggle"
+            id="menuToggle"
+            aria-label="Open navigation menu">
+
+            ☰
+
+        </button>
+
+    </div>
+
+</header>
+
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main>
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section class="hero" id="home">
+
+    <div class="hero-background"></div>
+
+
+    <div class="container hero-content">
+
+
+        <p class="hero-label">
+            VIDEO EDITOR · MOTION DESIGNER
+        </p>
+
+
+        <h1>
+
+            I TURN RAW FOOTAGE
+
+            <span>INTO STORIES.</span>
+
+        </h1>
+
+
+        <p class="hero-description">
+
+            I create cinematic edits, engaging short-form content
+            and motion graphics that make people stop scrolling
+            and start watching.
+
+        </p>
+
+
+        <div class="hero-buttons">
+
+
+            <a href="{% url 'work' %}" class="btn btn-primary">
+                View My Work
+            </a>
+
+
+            <a href="{% url 'contact' %}" class="btn btn-outline">
+                Work With Me
+            </a>
+
+
+        </div>
+
+
+        <div class="hero-scroll">
+
+            <span></span>
+
+            Scroll to explore
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     SHOWREEL
+===================================================== -->
+
+<!-- =====================================================
+     SHOWREEL
+===================================================== -->
+
+<section class="showreel section" id="showreel">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <p class="section-label">
+                01 / SHOWREEL
+            </p>
+
+            <h2>
+                MY <span>SHOWREEL.</span>
+            </h2>
+
+        </div>
+
+
+        {% if featured_video %}
+
+        <div class="showreel-video-wrapper">
+
+            <video
+                class="showreel-video"
+                controls
+                preload="metadata"
+                {% if featured_video.thumbnail %}
+                poster="{{ featured_video.thumbnail.url }}"
+                {% endif %}
+            >
+
+                <source
+                    src="{{ featured_video.video.url }}"
+                    type="video/mp4"
+                >
+
+                Your browser does not support HTML5 video.
+
+            </video>
+
+        </div>
+
+
+        <div class="video-info">
+
+            <h3>
+                {{ featured_video.title }}
+            </h3>
+
+            {% if featured_video.description %}
+
+            <p>
+                {{ featured_video.description }}
+            </p>
+
+            {% endif %}
+
+            <span>
+                {{ featured_video.get_category_display }}
+            </span>
+
+        </div>
+
+
+        {% else %}
+
+        <div class="video-placeholder">
+
+            <h3>
+                SHOWREEL COMING SOON
+            </h3>
+
+            <p>
+                Add a featured video from the Django Admin panel.
+            </p>
+
+        </div>
+
+        {% endif %}
+
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     ABOUT ME
+===================================================== -->
+
+<section class="about section" id="about">
+
+    <div class="container about-grid">
+
+
+        <!-- ABOUT TITLE -->
+
+        <div class="about-title">
+
+            <p class="section-label">
+                02 / ABOUT ME
+            </p>
+
+
+            <h2>
+
+                I'M A
+
+                <span>
+                    CREATIVE
+                </span>
+
+                EDITOR.
+
+            </h2>
+
+        </div>
+
+
+
+        <!-- ABOUT CONTENT -->
+
+        <div class="about-content">
+
+
+            <p class="about-large">
+
+                I don't just cut clips.
+
+                I build stories.
+
+            </p>
+
+
+            <p>
+
+                I'm <strong>Manikanta</strong>, a video editor and
+                aspiring motion designer focused on creating
+                engaging digital content.
+
+            </p>
+
+
+            <p>
+
+                Great editing is about more than putting
+                clips on a timeline. It's about rhythm,
+                emotion, pacing and knowing exactly when
+                to keep the viewer watching.
+
+            </p>
+
+
+            <p>
+
+                My goal is simple — take raw footage and
+                transform it into content that looks
+                professional, feels intentional and
+                keeps the audience engaged.
+
+            </p>
+
+
+
+            <!-- SOFTWARE -->
+
+            <div class="tools">
+
+
+                <div class="tool">
+
+                    <strong>
+                        PREMIERE PRO
+                    </strong>
+
+                    <span>
+                        VIDEO EDITING
+                    </span>
+
+                </div>
+
+
+                <div class="tool">
+
+                    <strong>
+                        AFTER EFFECTS
+                    </strong>
+
+                    <span>
+                        MOTION DESIGN
+                    </span>
+
+                </div>
+
+
+                <div class="tool">
+
+                    <strong>
+                        CAPCUT
+                    </strong>
+
+                    <span>
+                        SHORT FORM
+                    </span>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- DETAILED ABOUT PAGE -->
+
+            <a
+                href="{% url 'about' %}"
+                class="about-button">
+
+                More About Me →
+
+            </a>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+</main>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+    <div class="container footer-content">
+
+        <p>
+            © 2026 Manikanta. All rights reserved.
+        </p>
+
+
+        <p>
+            Designed & built with Django.
+        </p>
+
+    </div>
+
+</footer>
+
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script src="{% static 'js/script.js' %}"></script>
+
+
+</body>
+
+</html>

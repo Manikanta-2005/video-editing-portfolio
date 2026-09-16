@@ -1,0 +1,542 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="Contact Manikanta for professional video editing, motion graphics and content creation.">
+
+    <meta name="author" content="Manikanta">
+
+    <title>Contact — Manikanta</title>
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <style>
+
+        /* =====================================================
+           CONTACT PAGE
+        ===================================================== */
+
+        .contact-page {
+            min-height: 100vh;
+            padding-top: 160px;
+            padding-bottom: 100px;
+        }
+
+
+        /* =====================================================
+           HEADER
+        ===================================================== */
+
+        .contact-header {
+            margin-bottom: 70px;
+        }
+
+
+        .contact-header h1 {
+            font-size: clamp(55px, 8vw, 110px);
+            line-height: 0.95;
+            margin: 20px 0 25px;
+            font-weight: 900;
+            letter-spacing: -4px;
+        }
+
+
+        .contact-header h1 span {
+            color: #b6ff00;
+        }
+
+
+        .contact-header p {
+            max-width: 650px;
+            color: #999;
+            font-size: 18px;
+            line-height: 1.7;
+        }
+
+
+        /* =====================================================
+           LAYOUT
+        ===================================================== */
+
+        .contact-layout {
+            display: grid;
+            grid-template-columns: 0.8fr 1.2fr;
+            gap: 80px;
+            align-items: start;
+        }
+
+
+        /* =====================================================
+           CONTACT INFORMATION
+        ===================================================== */
+
+        .contact-info {
+            padding-top: 10px;
+        }
+
+
+        .contact-info h2 {
+            font-size: 30px;
+            margin-bottom: 20px;
+        }
+
+
+        .contact-info > p {
+            color: #999;
+            line-height: 1.7;
+            margin-bottom: 35px;
+        }
+
+
+        .contact-detail {
+            margin-bottom: 28px;
+        }
+
+
+        .contact-detail-label {
+            display: block;
+            color: #777;
+            font-size: 12px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+
+        .contact-detail a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+            transition: 0.3s ease;
+        }
+
+
+        .contact-detail a:hover {
+            color: #b6ff00;
+        }
+
+
+        .contact-location {
+            color: #fff;
+            font-size: 18px;
+        }
+
+
+        /* =====================================================
+           AVAILABILITY
+        ===================================================== */
+
+        .availability {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+            padding: 10px 15px;
+            border: 1px solid #292929;
+            background: #111;
+            font-size: 13px;
+            color: #bbb;
+        }
+
+
+        .availability-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #b6ff00;
+            box-shadow: 0 0 10px #b6ff00;
+        }
+
+
+
+        /* =====================================================
+           EMAIL CONTACT
+        ===================================================== */
+
+        .contact-form-wrapper {
+            padding: 40px;
+            border: 1px solid #252525;
+            background: #0b0b0b;
+        }
+
+
+        .contact-form-wrapper h2 {
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+
+        .form-intro {
+            color: #777;
+            margin-bottom: 35px;
+            line-height: 1.6;
+        }
+
+
+        .email-button {
+            display: inline-block;
+            border: none;
+            background: #b6ff00;
+            color: #000;
+            padding: 17px 28px;
+            font-size: 15px;
+            font-weight: 800;
+            text-decoration: none;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+
+        .email-button:hover {
+            transform: translateY(-3px);
+            box-shadow:
+                0 12px 30px
+                rgba(182, 255, 0, 0.15);
+        }
+
+
+        .form-note {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-top: 20px;
+        }
+
+
+        /* =====================================================
+           MOBILE
+        ===================================================== */
+
+        @media (max-width: 850px) {
+
+            .contact-page {
+                padding-top: 130px;
+            }
+
+
+            .contact-layout {
+                grid-template-columns: 1fr;
+                gap: 55px;
+            }
+
+
+            .contact-header h1 {
+                letter-spacing: -2px;
+            }
+
+
+            .contact-form-wrapper {
+                padding: 25px;
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .contact-header h1 {
+                font-size: 52px;
+            }
+
+
+            .contact-header p {
+                font-size: 16px;
+            }
+
+
+            .contact-form-wrapper {
+                padding: 20px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     NAVIGATION
+===================================================== -->
+
+<header class="navbar" id="navbar">
+
+    <div class="container nav-container">
+
+
+        <!-- LOGO -->
+
+        <a href="{% url 'home' %}" class="logo">
+
+            <span class="brand-name">
+                MANI
+            </span><span>.</span>
+
+        </a>
+
+
+        <!-- NAVIGATION -->
+
+        <nav class="nav-menu">
+
+            <a href="{% url 'home' %}">
+                Home
+            </a>
+
+            <a href="{% url 'work' %}">
+                Work
+            </a>
+
+            <a href="{% url 'services' %}">
+                Services
+            </a>
+
+            <a href="{% url 'about' %}">
+                About
+            </a>
+
+            <a href="{% url 'contact' %}">
+                Contact
+            </a>
+
+        </nav>
+
+
+        <!-- LET'S TALK -->
+
+        <a href="{% url 'contact' %}" class="nav-button">
+            Let's Talk
+        </a>
+
+
+        <!-- MOBILE MENU -->
+
+        <button
+            class="menu-toggle"
+            id="menuToggle"
+            aria-label="Open navigation menu">
+
+            ☰
+
+        </button>
+
+    </div>
+
+</header>
+
+
+
+<!-- =====================================================
+     CONTACT PAGE
+===================================================== -->
+
+<main>
+
+<section class="contact-page">
+
+    <div class="container">
+
+
+        <!-- =================================================
+             HEADER
+        ================================================== -->
+
+        <div class="contact-header">
+
+            <p class="section-label">
+                05 / CONTACT
+            </p>
+
+
+            <h1>
+
+                LET'S CREATE
+
+                <span>
+                    SOMETHING.
+                </span>
+
+            </h1>
+
+
+            <p>
+
+                Have a video project in mind?
+
+                Tell me what you're working on and
+                I'll get back to you with the next steps.
+
+            </p>
+
+        </div>
+
+
+
+        <!-- =================================================
+             CONTACT CONTENT
+        ================================================== -->
+
+        <div class="contact-layout">
+
+
+            <!-- =============================================
+                 CONTACT INFORMATION
+            ============================================== -->
+
+            <div class="contact-info">
+
+
+                <h2>
+                    Let's work together.
+                </h2>
+
+
+                <p>
+
+                    Whether you need a Reel, YouTube video,
+                    cinematic edit or motion graphics,
+                    I'd love to hear about your project.
+
+                </p>
+
+
+
+                <!-- EMAIL -->
+
+                <div class="contact-detail">
+
+                    <span class="contact-detail-label">
+                        Email
+                    </span>
+
+                    <a href="mailto:bandarumanikanta1319@gmail.com">
+                        bandarumanikanta1319@gmail.com
+                    </a>
+
+                </div>
+
+
+
+                <!-- LOCATION -->
+
+                <div class="contact-detail">
+
+                    <span class="contact-detail-label">
+                        Based In
+                    </span>
+
+                    <span class="contact-location">
+                        India
+                    </span>
+
+                </div>
+
+
+
+                <!-- AVAILABILITY -->
+
+                <div class="availability">
+
+                    <span class="availability-dot"></span>
+
+                    Available for new projects
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- =============================================
+                 EMAIL CONTACT
+            ============================================== -->
+
+            <div class="contact-form-wrapper">
+
+
+                <h2>
+                    Let's talk.
+                </h2>
+
+
+                <p class="form-intro">
+
+                    Have a video project in mind? Send me an email
+                    and tell me what you're looking for.
+
+                </p>
+
+
+                <a
+                    href="mailto:bandarumanikanta1319@gmail.com"
+                    class="email-button"
+                >
+                    EMAIL ME →
+                </a>
+
+
+                <p class="form-note">
+
+                    bandarumanikanta1319@gmail.com
+
+                </p>
+
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+    <div class="container footer-content">
+
+        <p>
+            © 2026 Manikanta. All rights reserved.
+        </p>
+
+
+        <p>
+            Designed & built with Django.
+        </p>
+
+    </div>
+
+</footer>
+
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script src="{% static 'js/script.js' %}"></script>
+
+
+</body>
+
+</html>

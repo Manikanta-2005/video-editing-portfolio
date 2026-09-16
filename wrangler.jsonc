@@ -1,0 +1,6 @@
+{
+  "name": "video-editing-portfolio",
+  "main": "src/index.py",
+  "compatibility_flags": ["python_workers"],
+  "compatibility_date": "2026-09-07"
+}

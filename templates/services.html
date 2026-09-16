@@ -1,0 +1,968 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Services — Mani</title>
+
+    <link rel="stylesheet"
+          href="{% static 'css/style.css' %}">
+
+
+    <style>
+
+        /* =========================================
+           SERVICES PAGE
+        ========================================= */
+
+        .services-page {
+            padding-top: 160px;
+            padding-bottom: 120px;
+        }
+
+
+        /* =========================================
+           HERO
+        ========================================= */
+
+        .services-intro {
+            max-width: 850px;
+            margin-bottom: 80px;
+        }
+
+
+        .services-intro h1 {
+            font-size: clamp(55px, 8vw, 110px);
+            line-height: .9;
+            letter-spacing: -4px;
+            margin: 15px 0 30px;
+            font-weight: 900;
+        }
+
+
+        .services-intro h1 span {
+            color: #b6ff00;
+        }
+
+
+        .services-intro p {
+            max-width: 650px;
+            color: #888;
+            font-size: 18px;
+            line-height: 1.7;
+        }
+
+
+        /* =========================================
+           SERVICES GRID
+        ========================================= */
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+
+        /* =========================================
+           SERVICE CARD
+        ========================================= */
+
+        .service-card {
+            padding: 40px;
+            border: 1px solid #292929;
+            background: #080808;
+            min-height: 360px;
+            display: flex;
+            flex-direction: column;
+            transition: .35s ease;
+        }
+
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            border-color: #b6ff00;
+        }
+
+
+        /* ICON */
+
+        .service-icon {
+            width: 55px;
+            height: 55px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border: 1px solid #333;
+
+            font-size: 23px;
+
+            margin-bottom: 35px;
+
+            transition: .3s ease;
+        }
+
+
+        .service-card:hover .service-icon {
+            background: #b6ff00;
+            color: #000;
+            border-color: #b6ff00;
+        }
+
+
+        /* NUMBER */
+
+        .service-number {
+            color: #b6ff00;
+            font-size: 11px;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+        }
+
+
+        /* TITLE */
+
+        .service-card h2 {
+            font-size: 30px;
+            margin: 0 0 15px;
+            letter-spacing: -1px;
+        }
+
+
+        /* DESCRIPTION */
+
+        .service-card > p {
+            color: #777;
+            line-height: 1.7;
+            font-size: 15px;
+            max-width: 520px;
+            margin: 0 0 25px;
+        }
+
+
+        /* FEATURES */
+
+        .service-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: auto;
+        }
+
+
+        .service-features span {
+            border: 1px solid #292929;
+            padding: 8px 11px;
+
+            color: #777;
+
+            font-size: 10px;
+            letter-spacing: 1px;
+
+            text-transform: uppercase;
+        }
+
+
+        /* =========================================
+           WHY WORK WITH ME
+        ========================================= */
+
+        .why-section {
+            margin-top: 130px;
+        }
+
+
+        .why-heading {
+            margin-bottom: 50px;
+        }
+
+
+        .why-heading h2 {
+            font-size: clamp(45px, 6vw, 75px);
+            line-height: .95;
+            letter-spacing: -3px;
+            margin: 15px 0 0;
+        }
+
+
+        .why-heading h2 span {
+            color: #b6ff00;
+        }
+
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+
+        .why-card {
+            padding: 35px;
+            border: 1px solid #292929;
+        }
+
+
+        .why-card span {
+            color: #b6ff00;
+            font-size: 12px;
+            letter-spacing: 2px;
+        }
+
+
+        .why-card h3 {
+            font-size: 22px;
+            margin: 35px 0 12px;
+        }
+
+
+        .why-card p {
+            color: #777;
+            font-size: 14px;
+            line-height: 1.7;
+            margin: 0;
+        }
+
+
+        /* =========================================
+           CTA
+        ========================================= */
+
+        .services-cta {
+            margin-top: 130px;
+            padding: 70px 50px;
+
+            border: 1px solid #292929;
+
+            background:
+                radial-gradient(
+                    circle at 85% 50%,
+                    rgba(182,255,0,.10),
+                    transparent 35%
+                ),
+                #090909;
+        }
+
+
+        .services-cta h2 {
+            font-size: clamp(45px, 7vw, 85px);
+            line-height: .95;
+            letter-spacing: -4px;
+            margin: 15px 0 25px;
+        }
+
+
+        .services-cta h2 span {
+            color: #b6ff00;
+        }
+
+
+        .services-cta p {
+            max-width: 550px;
+            color: #777;
+            line-height: 1.7;
+            margin-bottom: 30px;
+        }
+
+
+        .services-cta a {
+            display: inline-block;
+
+            padding: 16px 25px;
+
+            background: #b6ff00;
+            color: #000;
+
+            text-decoration: none;
+
+            font-weight: 800;
+
+            transition: .3s ease;
+        }
+
+
+        .services-cta a:hover {
+            transform: translateY(-3px);
+        }
+
+
+        /* =========================================
+           RESPONSIVE
+        ========================================= */
+
+        @media (max-width: 800px) {
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+
+            .why-grid {
+                grid-template-columns: 1fr;
+            }
+
+
+            .service-card {
+                min-height: auto;
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .services-page {
+                padding-top: 130px;
+            }
+
+
+            .services-intro h1 {
+                letter-spacing: -2px;
+            }
+
+
+            .service-card {
+                padding: 30px;
+            }
+
+
+            .service-card h2 {
+                font-size: 27px;
+            }
+
+
+            .services-cta {
+                padding: 45px 25px;
+            }
+
+
+            .services-cta h2 {
+                letter-spacing: -2px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================
+     NAVBAR
+========================================= -->
+
+<header class="navbar" id="navbar">
+
+    <div class="container nav-container">
+
+
+        <a href="{% url 'home' %}" class="logo">
+
+            <span class="brand-name">
+                MANI
+            </span><span>.</span>
+
+        </a>
+
+
+        <nav class="nav-menu">
+
+            <a href="{% url 'home' %}">
+                Home
+            </a>
+
+            <a href="{% url 'work' %}">
+                Work
+            </a>
+
+            <a href="{% url 'services' %}">
+                Services
+            </a>
+
+            <a href="{% url 'about' %}">
+                About
+            </a>
+
+            <a href="{% url 'contact' %}">
+                Contact
+            </a>
+
+        </nav>
+
+
+        <a href="{% url 'contact' %}" class="nav-button">
+            Let's Talk
+        </a>
+
+
+        <button
+            class="menu-toggle"
+            id="menuToggle">
+
+            ☰
+
+        </button>
+
+    </div>
+
+</header>
+
+
+
+<!-- =========================================
+     MAIN
+========================================= -->
+
+<main>
+
+<section class="services-page">
+
+    <div class="container">
+
+
+        <!-- =====================================
+             INTRO
+        ====================================== -->
+
+        <div class="services-intro">
+
+            <p class="section-label">
+                02 / SERVICES
+            </p>
+
+
+            <h1>
+
+                WHAT I
+
+                <span>
+                    DO.
+                </span>
+
+            </h1>
+
+
+            <p>
+
+                I help creators, brands and businesses
+                turn raw footage into clean, engaging
+                and professional video content.
+
+            </p>
+
+        </div>
+
+
+
+        <!-- =====================================
+             SERVICES
+        ====================================== -->
+
+        <div class="services-grid">
+
+
+            <!-- SERVICE 01 -->
+
+            <div class="service-card">
+
+                <div class="service-icon">
+                    ▶
+                </div>
+
+
+                <div class="service-number">
+                    01 / SHORT-FORM
+                </div>
+
+
+                <h2>
+                    Reels & Shorts
+                </h2>
+
+
+                <p>
+
+                    Short-form videos designed to grab
+                    attention and keep viewers watching.
+
+                    Perfect for Instagram Reels,
+                    YouTube Shorts and other vertical
+                    content.
+
+                </p>
+
+
+                <div class="service-features">
+
+                    <span>
+                        Fast Pacing
+                    </span>
+
+                    <span>
+                        Captions
+                    </span>
+
+                    <span>
+                        Transitions
+                    </span>
+
+                    <span>
+                        Sound Effects
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- SERVICE 02 -->
+
+            <div class="service-card">
+
+                <div class="service-icon">
+                    ▶
+                </div>
+
+
+                <div class="service-number">
+                    02 / LONG-FORM
+                </div>
+
+
+                <h2>
+                    YouTube Videos
+                </h2>
+
+
+                <p>
+
+                    Engaging YouTube videos with clean
+                    cuts, storytelling, B-roll, music
+                    and sound design.
+
+                </p>
+
+
+                <div class="service-features">
+
+                    <span>
+                        Storytelling
+                    </span>
+
+                    <span>
+                        B-Roll
+                    </span>
+
+                    <span>
+                        Sound Design
+                    </span>
+
+                    <span>
+                        Color
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- SERVICE 03 -->
+
+            <div class="service-card">
+
+                <div class="service-icon">
+                    ◆
+                </div>
+
+
+                <div class="service-number">
+                    03 / CINEMATIC
+                </div>
+
+
+                <h2>
+                    Cinematic Editing
+                </h2>
+
+
+                <p>
+
+                    Cinematic edits focused on emotion,
+                    atmosphere and storytelling.
+
+                    Great for travel videos, events,
+                    brands and personal projects.
+
+                </p>
+
+
+                <div class="service-features">
+
+                    <span>
+                        Color Grading
+                    </span>
+
+                    <span>
+                        Music
+                    </span>
+
+                    <span>
+                        Sound Design
+                    </span>
+
+                    <span>
+                        Storytelling
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- SERVICE 04 -->
+
+            <div class="service-card">
+
+                <div class="service-icon">
+                    ✦
+                </div>
+
+
+                <div class="service-number">
+                    04 / MOTION
+                </div>
+
+
+                <h2>
+                    Motion Graphics
+                </h2>
+
+
+                <p>
+
+                    Motion graphics and visual effects
+                    that make your videos more dynamic,
+                    modern and visually interesting.
+
+                </p>
+
+
+                <div class="service-features">
+
+                    <span>
+                        After Effects
+                    </span>
+
+                    <span>
+                        Motion Text
+                    </span>
+
+                    <span>
+                        VFX
+                    </span>
+
+                    <span>
+                        Animations
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- SERVICE 05 -->
+
+            <div class="service-card">
+
+                <div class="service-icon">
+                    ✚
+                </div>
+
+
+                <div class="service-number">
+                    05 / COLOR
+                </div>
+
+
+                <h2>
+                    Color Grading
+                </h2>
+
+
+                <p>
+
+                    Professional color correction and
+                    grading to give your footage a
+                    consistent and polished visual style.
+
+                </p>
+
+
+                <div class="service-features">
+
+                    <span>
+                        Color Correction
+                    </span>
+
+                    <span>
+                        Color Grading
+                    </span>
+
+                    <span>
+                        Skin Tones
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- SERVICE 06 -->
+
+            <div class="service-card">
+
+                <div class="service-icon">
+                    ♪
+                </div>
+
+
+                <div class="service-number">
+                    06 / AUDIO
+                </div>
+
+
+                <h2>
+                    Sound Design
+                </h2>
+
+
+                <p>
+
+                    Music, sound effects and audio
+                    enhancement that make your videos
+                    feel more immersive and professional.
+
+                </p>
+
+
+                <div class="service-features">
+
+                    <span>
+                        SFX
+                    </span>
+
+                    <span>
+                        Music
+                    </span>
+
+                    <span>
+                        Audio Cleanup
+                    </span>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- =====================================
+             WHY WORK WITH ME
+        ====================================== -->
+
+        <section class="why-section">
+
+
+            <div class="why-heading">
+
+                <p class="section-label">
+                    03 / WHY WORK WITH ME
+                </p>
+
+
+                <h2>
+
+                    MORE THAN
+
+                    <span>
+                        JUST CUTS.
+                    </span>
+
+                </h2>
+
+            </div>
+
+
+            <div class="why-grid">
+
+
+                <div class="why-card">
+
+                    <span>
+                        01
+                    </span>
+
+                    <h3>
+                        Creative Editing
+                    </h3>
+
+                    <p>
+
+                        I don't just cut clips together.
+                        I focus on pacing, storytelling
+                        and making the video interesting
+                        to watch.
+
+                    </p>
+
+                </div>
+
+
+
+                <div class="why-card">
+
+                    <span>
+                        02
+                    </span>
+
+                    <h3>
+                        Attention to Detail
+                    </h3>
+
+                    <p>
+
+                        From transitions and captions
+                        to sound effects and color,
+                        every detail matters.
+
+                    </p>
+
+                </div>
+
+
+
+                <div class="why-card">
+
+                    <span>
+                        03
+                    </span>
+
+                    <h3>
+                        Client Focused
+                    </h3>
+
+                    <p>
+
+                        I listen to your ideas, understand
+                        your goals and make sure the final
+                        edit matches your vision.
+
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================
+             CTA
+        ====================================== -->
+
+        <section class="services-cta">
+
+
+            <p class="section-label">
+                HAVE A PROJECT?
+            </p>
+
+
+            <h2>
+
+                LET'S MAKE
+
+                <span>
+                    SOMETHING GREAT.
+                </span>
+
+            </h2>
+
+
+            <p>
+
+                Have footage that needs editing?
+                Tell me about your project and
+                let's create something people
+                will want to watch.
+
+            </p>
+
+
+            <a href="{% url 'contact' %}">
+
+                START A PROJECT →
+
+            </a>
+
+
+        </section>
+
+
+    </div>
+
+</section>
+
+</main>
+
+
+
+<!-- =========================================
+     FOOTER
+========================================= -->
+
+<footer>
+
+    <div class="container footer-content">
+
+        <p>
+            © 2026 Mani. All rights reserved.
+        </p>
+
+
+        <p>
+            Designed & built with Django.
+        </p>
+
+    </div>
+
+</footer>
+
+
+
+<script src="{% static 'js/script.js' %}"></script>
+
+</body>
+
+</html>
