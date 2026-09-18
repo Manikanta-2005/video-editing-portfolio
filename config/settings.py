@@ -28,9 +28,9 @@ SECRET_KEY = os.getenv(
     "django-insecure-change-this-in-production"
 )
 
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # ============================================================
@@ -38,18 +38,25 @@ ALLOWED_HOSTS = []
 # ============================================================
 
 INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
     'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
     'django.contrib.staticfiles',
     'main',
 ]
+
 
 # ============================================================
 # MIDDLEWARE
 # ============================================================
 
 MIDDLEWARE = [
-
     'django.middleware.security.SecurityMiddleware',
+
+    # WhiteNoise serves static files on Render
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 
     'django.contrib.sessions.middleware.SessionMiddleware',
 
@@ -77,7 +84,6 @@ ROOT_URLCONF = 'config.urls'
 # ============================================================
 
 TEMPLATES = [
-
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
 
@@ -88,15 +94,12 @@ TEMPLATES = [
         'APP_DIRS': True,
 
         'OPTIONS': {
-
             'context_processors': [
-
                 'django.template.context_processors.request',
 
                 'django.contrib.auth.context_processors.auth',
 
                 'django.contrib.messages.context_processors.messages',
-
             ],
         },
     },
@@ -115,13 +118,10 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # ============================================================
 
 DATABASES = {
-
     'default': {
-
         'ENGINE': 'django.db.backends.sqlite3',
 
         'NAME': BASE_DIR / 'db.sqlite3',
-
     }
 }
 
@@ -131,7 +131,6 @@ DATABASES = {
 # ============================================================
 
 AUTH_PASSWORD_VALIDATORS = [
-
     {
         'NAME':
         'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -173,9 +172,21 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
 STATICFILES_DIRS = [
     BASE_DIR / 'static'
 ]
+
+# WhiteNoise static file configuration
+STORAGES = {
+    "default": {
+        "BACKEND": "django.core.files.storage.FileSystemStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
 
 
 # ============================================================
