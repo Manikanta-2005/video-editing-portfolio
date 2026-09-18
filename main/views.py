@@ -16,6 +16,18 @@ def home(request):
         featured=True
     ).first()
 
+    # If no featured video exists in the database,
+    # automatically use the portfolio video.
+    if not featured_video:
+
+        featured_video = Video(
+            title="My Showreel",
+            category="cinematic",
+            description="My latest video editing showreel.",
+            video="videos/Portfolio.mp4",
+            featured=True,
+        )
+
     return render(
         request,
         "home.html",
@@ -74,17 +86,11 @@ def contact(request):
 
     if request.method == "POST":
 
-        # Get information from the contact form
         name = request.POST.get("name", "").strip()
         email = request.POST.get("email", "").strip()
         project_type = request.POST.get("project_type", "").strip()
         budget = request.POST.get("budget", "").strip()
         message = request.POST.get("message", "").strip()
-
-
-        # ====================================================
-        # BASIC VALIDATION
-        # ====================================================
 
         if not name or not email or not project_type or not budget or not message:
 
@@ -95,17 +101,7 @@ def contact(request):
 
             return redirect("contact")
 
-
-        # ====================================================
-        # EMAIL SUBJECT
-        # ====================================================
-
         subject = f"New Portfolio Enquiry from {name}"
-
-
-        # ====================================================
-        # EMAIL CONTENT
-        # ====================================================
 
         email_message = f"""
 NEW PROJECT ENQUIRY
@@ -138,46 +134,24 @@ This enquiry was submitted through
 Manikanta's video editing portfolio.
 """
 
-
         try:
 
-            # =================================================
-            # SEND EMAIL
-            #
-            # Your email receives the enquiry.
-            # The client's email is added as Reply-To.
-            # So when you click "Reply" in Gmail,
-            # the reply will go directly to the client.
-            # =================================================
-
             email = EmailMessage(
-
                 subject=subject,
-
                 body=email_message,
-
                 from_email=settings.DEFAULT_FROM_EMAIL,
-
                 to=[settings.CONTACT_EMAIL],
-
                 reply_to=[email],
-
             )
 
             email.send(
                 fail_silently=False
             )
 
-
-            # =================================================
-            # SUCCESS MESSAGE
-            # =================================================
-
             messages.success(
                 request,
                 "Your message has been sent successfully!"
             )
-
 
         except Exception as e:
 
@@ -188,9 +162,7 @@ Manikanta's video editing portfolio.
                 "Sorry, something went wrong while sending your message. Please try again."
             )
 
-
         return redirect("contact")
-
 
     return render(
         request,
